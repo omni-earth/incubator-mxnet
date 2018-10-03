@@ -1,5 +1,5 @@
 1. Launch Deep Learning AMI (Amazon Linux) Version 14.0 (ami-0462b1e664851698c) as a p3.8xlarge machine with a decently sized attachable volume
-2. Clone this repo in a dir on the mounted volume
+2. Clone this repo in a directory on the mounted volume
 3. ```pip install mxnet-cu90 ```
 4. Set up a working directory separate from the repo directory
 5. Pull vgg16fc init model files (directrions below)
@@ -19,7 +19,7 @@ sed 's/ /\t/g' val_index.lst > val_index_tab.lst
 9. make a model save path, e.g. ```mkdir model_evp```
 
 10. ```vi /mnt/cirrus/mxnet/example/fcn-xs/fcn_xs.py and change model paths, number of classes to 3, workspace to max for machine (for the above machine type it is 8192), paths to training and validation lists, rgb mean, number of epochs to 75  ```
-11. train
+11. train via ```nohup python /mnt/cirrus/mxnet/example/fcn-xs/fcn_xs.py --model=fcn32s --prefix=VGG_FC_ILSVRC_16_layers --epoch=74 --init-type=vgg16 > evp_train_fcn32.out&```
 
 
 FCN-xs EXAMPLE
