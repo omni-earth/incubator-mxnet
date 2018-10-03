@@ -1,3 +1,22 @@
+1. Launch Deep Learning AMI (Amazon Linux) Version 14.0 (ami-0462b1e664851698c) as a p3.8xlarge machine with a decently sized attachable volume
+2. Clone this repo in a dir on the mounted volume
+3. ```shell pip install mxnet-cu90 ```
+4. Set up a working directory separate from the repo directory
+5. Pull vgg16fc init model files (directrions below)
+6. Pull EVP images and labels into the respective directories: JPEGImages and SegmentationClass
+7. Remove images with any x/y dimensions larger than 512
+8. Record training pairs to file:
+```shell 
+ls JPEGImages/* > JPEGImages.lst
+ls SegmentationClass/* > SegmentationClass.lst
+paste JPEGImages.lst SegmentationClass.lst | column -s $'\t' -t > combined.lst
+sed 's/ /\t/g' combined.lst > combined_tab.lst
+run index.sh on combined_tab.lst to get combined_tab_index.lst
+head -1000 combined_tab_index.lst > val_tab_index.lst && sed -i '1,+999d' combined_tab_index.lst
+mv combined_tab_index.lst train_tab_index.lst
+```
+
+
 FCN-xs EXAMPLE
 --------------
 This folder contains an example implementation for Fully Convolutional Networks (FCN) in MXNet.  
