@@ -10,10 +10,11 @@
 ls JPEGImages/* > JPEGImages.lst
 ls SegmentationClass/* > SegmentationClass.lst
 paste JPEGImages.lst SegmentationClass.lst | column -s $'\t' -t > combined.lst
-sed 's/ /\t/g' combined.lst > combined_tab.lst
-run index.sh on combined_tab.lst to get combined_tab_index.lst
-head -1000 combined_tab_index.lst > val_tab_index.lst && sed -i '1,+999d' combined_tab_index.lst
-mv combined_tab_index.lst train_tab_index.lst
+head -1000 combined.lst > val.lst && sed -i '1,+999d' combined.lst
+mv combined.lst train.lst
+run index.sh on train.lst and val.lst to get train_index.lst and val_index.lst
+sed 's/ /\t/g' train_index.lst > train_index_tab.lst
+sed 's/ /\t/g' val_index.lst > val_index_tab.lst
 ```
 9. make a model save path, e.g. ```mkdir model_evp```
 
