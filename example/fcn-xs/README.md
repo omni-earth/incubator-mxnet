@@ -15,6 +15,8 @@ run index.sh on combined_tab.lst to get combined_tab_index.lst
 head -1000 combined_tab_index.lst > val_tab_index.lst && sed -i '1,+999d' combined_tab_index.lst
 mv combined_tab_index.lst train_tab_index.lst
 ```
+9. ```shell vi /mnt/cirrus/mxnet/example/fcn-xs/fcn_xs.py and change model paths, number of classes to 3, workspace to max for machine (for the above machine type it is 8192), paths to training and validation lists, rgb mean, number of epochs to 75  ```
+10. train
 
 
 FCN-xs EXAMPLE
