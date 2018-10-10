@@ -69,8 +69,8 @@ def get_data(img_path):
 def main():
     """Module main execution"""
     # Initialization variables - update to change your model and execution context
-    model_prefix = "evp_FCN32s_VGG16_v6_lr001_nonvoid"
-    epoch = 75
+    model_prefix = str(args.model_prefix)
+    epoch = args.epoch
 
     # By default, MXNet will run on the CPU. Change to ctx = mx.gpu() to run on GPU.
     ctx = mx.cpu()
@@ -94,12 +94,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run VGG16-FCN-8s to segment an input image')
     parser.add_argument('--input',
                         required=True,
-                        default='predIn/',
-                        help='Path to segmentation input JPG images')
+                        #type=make_file_extension_assertion('.jpg'),
+                        help='The segmentation input JPG image')
     parser.add_argument('--output',
-                        required=True,
-                        default='predOut/',
-                        help='Path to segmentation output PNG images')
+                        default='evp_FCN32s_VGG16_v6_lr001_nonvoid_ep75_segmented.png',
+                        #type=make_file_extension_assertion('.png'),
+                        help='The segmentation output PNG image')
+    parser.add_argument('--model_prefix',
+                        default='evp_FCN32s_VGG16_v6_lr001_nonvoid',
+                        #type=make_file_extension_assertion('.png'),
+                        help='Model prefix')
+    parser.add_argument('--epoch',
+                        default='75',
+                        type=int,
+                        help='Epoch number')
     args = parser.parse_args()
     for f in glob.glob(args.input+"*.jpg"):
         filename_split = os.path.splitext(f)
