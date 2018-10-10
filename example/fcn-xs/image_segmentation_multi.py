@@ -94,15 +94,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run VGG16-FCN-8s to segment an input image')
     parser.add_argument('--input',
                         required=True,
-                        #type=make_file_extension_assertion('.jpg'),
                         help='The segmentation input JPG image')
     parser.add_argument('--output',
                         default='evp_FCN32s_VGG16_v6_lr001_nonvoid_ep75_segmented.png',
-                        #type=make_file_extension_assertion('.png'),
                         help='The segmentation output PNG image')
     parser.add_argument('--model_prefix',
                         default='evp_FCN32s_VGG16_v6_lr001_nonvoid',
-                        #type=make_file_extension_assertion('.png'),
                         help='Model prefix')
     parser.add_argument('--epoch',
                         default='75',
