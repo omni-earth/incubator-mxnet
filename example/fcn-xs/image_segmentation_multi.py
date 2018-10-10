@@ -66,8 +66,6 @@ def get_data(img_path):
     img = np.expand_dims(img, axis=0)
     return img
 
-
-
 def main():
     """Module main execution"""
     # Initialization variables - update to change your model and execution context
