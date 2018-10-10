@@ -94,10 +94,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run VGG16-FCN-8s to segment an input image')
     parser.add_argument('--input',
                         required=True,
-                        help='The segmentation input JPG image')
+                        default='predIn/',
+                        help='Path to segmentation input JPG images')
     parser.add_argument('--output',
-                        default='evp_FCN32s_VGG16_v6_lr001_nonvoid_ep75_segmented.png',
-                        help='The segmentation output PNG image')
+                        required=True,
+                        default='predOut/',
+                        help='Path to segmentation output PNG images')
     args = parser.parse_args()
     for f in glob.glob(args.input+"*.jpg"):
         filename_split = os.path.splitext(f)
